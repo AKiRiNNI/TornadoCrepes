@@ -50,10 +50,6 @@
       margin-left: auto;
     }
 
-    .nav-links li {
-      list-style: none;
-    }
-
     .nav-links a {
       text-decoration: none;
       color: #444;
@@ -62,7 +58,6 @@
       padding: 0.5rem 1rem;
       border-radius: 6px;
       transition: background-color 0.3s, color 0.3s;
-      font-family: 'Raleway', sans-serif;
     }
 
     .nav-links a:hover {
@@ -88,7 +83,6 @@
       z-index: 2;
       background: rgba(255, 255, 255, 0.3);
       padding: 2rem;
-      border-radius: 0px;
       max-width: 600px;
       margin: 2rem auto;
       color: white;
@@ -106,21 +100,12 @@
     }
 
     .hero p {
-      font-family: 'Playfair Display', serif;
-      font-weight: 300;
       font-size: 1.1em;
       margin-bottom: 1em;
       text-shadow: 0 1px 2px rgba(0,0,0,0.2);
     }
 
-    .hero-line {
-      width: 60px;
-      height: 3px;
-      background-color: white;
-      margin: 1rem auto 0;
-      opacity: 0;
-      animation: fadeLine 1s ease-out 1.5s forwards;
-    }
+
 
     @keyframes slideIn {
       to {
@@ -129,11 +114,6 @@
       }
     }
 
-    @keyframes fadeLine {
-      to {
-        opacity: 1;
-      }
-    }
 
     .btn {
       padding: 0.75rem 1.5rem;
@@ -141,10 +121,8 @@
       color: white;
       text-decoration: none;
       border-radius: 5px;
-      display: inline-block;
       margin-top: 1.5rem;
       transition: all 0.3s ease;
-      box-shadow: 0 0 0 transparent;
     }
 
     .btn:hover {
@@ -152,22 +130,68 @@
       transform: scale(1.05);
     }
 
-    .gallery, .contact {
+    .gallery {
       padding: 60px 20px;
-      max-width: 1000px;
+      max-width: 1200px;
       margin: auto;
       text-align: center;
+      position: relative;
     }
 
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    .gallery h2 {
+      margin-bottom: 2rem;
+    }
+
+    .gallery-wrapper {
+      overflow-x: auto;
+      display: flex;
       gap: 1rem;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 1rem;
     }
 
-    .gallery-grid img {
-      width: 100%;
+    .gallery-wrapper img {
+      flex: 0 0 auto;
+      width: 250px;
+      height: auto;
       border-radius: 8px;
+      scroll-snap-align: start;
+    }
+
+    .gallery-wrapper::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .gallery-wrapper::-webkit-scrollbar-thumb {
+      background: #ffa94d;
+      border-radius: 4px;
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.8);
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0.5rem 1rem;
+      z-index: 10;
+      display: none;
+    }
+
+    .arrow-left {
+      left: 0;
+    }
+
+    .arrow-right {
+      right: 0;
+    }
+
+    @media (min-width: 768px) {
+      .arrow {
+        display: block;
+      }
     }
 
     .our-story {
@@ -186,7 +210,6 @@
       padding: 40px;
       font-size: 1.2rem;
       font-family: 'Playfair Display', serif;
-      font-weight: 300;
     }
 
     .our-story-image {
@@ -195,23 +218,18 @@
       min-height: 400px;
     }
 
+    .contact {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+      text-align: center;
+    }
+
     footer {
       background: #222;
       color: white;
       text-align: center;
       padding: 1rem;
-    }
-
-    /* scroll animation */
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
     }
 
     .scroll-animate {
@@ -223,6 +241,116 @@
     .scroll-animate.visible {
       animation: fadeUp 0.6s ease-out forwards;
     }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .menu-scroll-box {
+    position: relative;
+    max-height: 300px;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+  }
+  .menu-scroll-box.expanded {
+    max-height: 600px;
+    overflow-y: auto;
+    border-radius: 8px;
+  }
+  .menu-fade {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0), white);
+    pointer-events: none;
+  }
+  .menu-scroll-box.expanded .menu-fade {
+    display: none;
+  }
+
+  .menu-grid-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 1rem 0;
+  }
+  .menu-category {
+    text-align: left;
+  }
+  .menu-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 每行两个 */
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+  .menu-item {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-direction: row;
+}
+  .menu-item h4 {
+    margin: 0 0 0.25rem;
+    font-size: 1.1rem;
+    font-family: 'Playfair Display', serif;
+  }
+  .menu-item p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #555;
+  }
+  .menu-item span {
+    color: #2196F3;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+  .menu-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+  .menu-toggle-link {
+    background: none;
+    border: none;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: #444;
+    cursor: pointer;
+    position: relative;
+    padding: 0;
+    margin-top: 1rem;
+    transition: color 0.3s ease;
+  }
+  .menu-toggle-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    height: 2px;
+    width: 0%;
+    background-color: #ffa94d;
+    transition: width 0.3s ease;
+  }
+  .menu-toggle-link:hover {
+    color: #ffa94d;
+  }
+  .menu-toggle-link:hover::after {
+    width: 100%;
+  }
   </style>
 </head>
 <body>
@@ -232,6 +360,7 @@
       <ul class="nav-links">
         <li><a href="#home">Home</a></li>
         <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#menu">Menu</a></li>
         <li><a href="#story">Our Story</a></li>
         <li><a href="#contact">Contact Us</a></li>
         <li><a href="order.html">Order Now</a></li>
@@ -243,47 +372,175 @@
     <div class="hero-content">
       <h1>Welcome To Tornado Crepes</h1>
       <p>Home of crispy wraps & sweet treats</p>
-      <div class="hero-line"></div>
       <a href="order.html" class="btn">Order Now</a>
     </div>
   </section>
 
   <section id="gallery" class="gallery scroll-animate">
     <h2>Gallery</h2>
-    <div class="gallery-grid">
+    <button class="arrow arrow-left" onclick="scrollGallery(-1)">&#10094;</button>
+    <div class="gallery-wrapper" id="galleryWrapper">
       <img src="assets/food1.jpg" alt="Crepe 1">
       <img src="assets/food2.jpg" alt="Crepe 2">
       <img src="assets/food3.jpg" alt="Crepe 3">
       <img src="assets/food4.jpg" alt="Crepe 4">
     </div>
+    <button class="arrow arrow-right" onclick="scrollGallery(1)">&#10095;</button>
   </section>
 
-  <section id="story" class="our-story scroll-animate">
-  <div class="our-story-text">
-    <div>
-      <h2 style="font-family: 'Playfair Display', serif;">Our Story</h2>
-      <p>Started as a small family stand, we’ve always believed in warm crepes and even warmer hearts.</p>
+ <section id="menu" class="contact scroll-animate">
+  <h2>Our Menu</h2>
+
+  <!-- Scrollable Box with Collapsed Preview -->
+  <div id="menuContainer" class="menu-scroll-box collapsed">
+    <div id="menuContent" class="menu-grid-container">
+
+      <!-- Sweet Crepe and Egg Waffle -->
+      <div class="menu-category">
+        <h3>Sweet Crepe and Egg Waffle</h3>
+        <div class="menu-grid">
+          <div class="menu-item">
+            <img src="assets/menu-item-placeholder.jpg" alt="Item Name" class="menu-img">
+            <div>
+              <h4>Tornado</h4>
+              <p>Banana, crushed oreo, marshmallow, chocolate syrup and chocolate ice cream</p>
+            </div>
+            <span>$5.00</span>
+          </div>
+          <div class="menu-item">
+            <img src="assets/menu-item-placeholder.jpg" alt="Item Name" class="menu-img">
+            <div>
+              <h4>Mojollia</h4>
+              <p>Banana, strawberry, raspberry, nutella, chocolate syrup and cookie cream ice cream</p>
+            </div>
+            <span>$5.00</span>
+          </div>
+          <div class="menu-item">
+            <img src="assets/menu-item-placeholder.jpg" alt="Item Name" class="menu-img">
+            <div>
+              <h4>Red Mango</h4>
+              <p>Mango, strawberry, blackberry, strawberry syrup and strawberry ice cream</p>
+            </div>
+            <span>$5.00</span>
+          </div>
+          <div class="menu-item">
+            <img src="assets/menu-item-placeholder.jpg" alt="Item Name" class="menu-img">
+            <div>
+              <h4>Five O</h4>
+              <p>Strawberry, kiwi, nutella, caramel and pistachio ice cream</p>
+            </div>
+            <span>$5.00</span>
+          </div>
+          <div class="menu-item">
+            <img src="assets/menu-item-placeholder.jpg" alt="Item Name" class="menu-img">
+            <div>
+              <h4>Tokyo Sundae</h4>
+              <p>Banana, pineapple, kiwi, condense milk, coconut chips and brown butter</p>
+            </div>
+            <span>$5.00</span>
+          </div>
+          <div class="menu-item">
+            <img src="assets/menu-item-placeholder.jpg" alt="Item Name" class="menu-img">
+            <div>
+              <h4>Purple Rain</h4>
+              <p>Papaya, blueberry, almond, blueberry syrup and vanilla ice cream</p>
+            </div>
+            <span>$5.00</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Savory Crepe -->
+      <div class="menu-category">
+        <h3>Savory Crepe</h3>
+        <div class="menu-grid">
+          <div class="menu-item">
+            <img src="assets/menu-item-placeholder.jpg" alt="Item Name" class="menu-img">
+            <div>
+              <h4>Shrimp Avocado Crepe</h4>
+              <p>Shrimp, avocado, baby spinach, spring mix, carrots, cucumber, homemade mayo and color pepper.</p>
+            </div>
+            <span>$5.00</span>
+          </div>
+          <div class="menu-item">
+            <img src="assets/menu-item-placeholder.jpg" alt="Item Name" class="menu-img">
+            <div>
+              <h4>Chicken Teriyaki Crepe</h4>
+              <p>Chicken breast, baby spinach, spring mix, carrots, corn, teriyaki sauce and sesame sauce.</p>
+            </div>
+            <span>$5.00</span>
+          </div>
+          <div class="menu-item">
+            <img src="assets/menu-item-placeholder.jpg" alt="Item Name" class="menu-img">
+            <div>
+              <h4>Sausages Crepe</h4>
+              <p>Sausages, avocado, baby spinach, spring mix, carrots, corn, tomatoes and homemade mayo.</p>
+            </div>
+            <span>$5.00</span>
+          </div>
+          <div class="menu-item">
+            <img src="assets/menu-item-placeholder.jpg" alt="Item Name" class="menu-img">
+            <div>
+              <h4>Vegetarian Crepe</h4>
+              <p>Baby spinach, spring mix, carrots, corn, cucumber, tomatoes, Italian dressing and sesame dressing.</p>
+            </div>
+            <span>$5.00</span>
+          </div>
+          <div class="menu-item">
+            <img src="assets/menu-item-placeholder.jpg" alt="Item Name" class="menu-img">
+            <div>
+              <h4>Egg Roll Crepe</h4>
+              <p>Double egg spread, dry pork, baby spinach, spring mix and homemade mayo</p>
+            </div>
+            <span>$5.00</span>
+          </div>
+          <div class="menu-item">
+            <img src="assets/menu-item-placeholder.jpg" alt="Item Name" class="menu-img">
+            <div>
+              <h4>Color Bacon Crepe</h4>
+              <p>Smoke bacon, color pepper, corn, tomatoes, cucumber, baby spinach</p>
+            </div>
+            <span>$5.00</span>
+          </div>
+        </div>
+      </div>
+
     </div>
+    <div id="menuFade" class="menu-fade"></div>
   </div>
-  <div class="our-story-image"></div>
+
+  <!-- Toggle Button -->
+  <button id="toggleMenuBtn" onclick="toggleMenu()" class="menu-toggle-link">
+    View Full Menu
+  </button>
 </section>
 
 
-<section id="contact" class="contact scroll-animate">
-  <h2>Contact Us</h2>
-  <p>Phone: (917) 294-7373<br>Address: 8610 Roosevelt Ave, Jackson Heights, NY</p>
-  <div style="margin-top: 2rem;">
-    <iframe
-      src="https://www.google.com/maps?q=8610+Roosevelt+Ave,+Jackson+Heights,+NY&output=embed"
-      width="100%"
-      height="400"
-      style="border:0; border-radius: 12px;"
-      allowfullscreen=""
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade">
-    </iframe>
-  </div>
-</section>
+  <section id="story" class="our-story scroll-animate">
+    <div class="our-story-text">
+      <div>
+        <h2 style="font-family: 'Playfair Display', serif;">Our Story</h2>
+        <p>Started as a small family stand, we’ve always believed in warm crepes and even warmer hearts.</p>
+      </div>
+    </div>
+    <div class="our-story-image"></div>
+  </section>
+
+  <section id="contact" class="contact scroll-animate">
+    <h2>Contact Us</h2>
+    <p>Phone: (917) 294-7373<br>Address: 8610 Roosevelt Ave, Jackson Heights, NY</p>
+    <div style="margin-top: 2rem;">
+      <iframe
+        src="https://www.google.com/maps?q=8610+Roosevelt+Ave,+Jackson+Heights,+NY&output=embed"
+        width="100%"
+        height="400"
+        style="border:0; border-radius: 12px;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </section>
 
   <footer>
     <p>© 2025 Tornado Crepes | Crafted with love ❤️</p>
@@ -302,6 +559,23 @@
     document.querySelectorAll('.scroll-animate').forEach(section => {
       observer.observe(section);
     });
+
+    function scrollGallery(direction) {
+      const wrapper = document.getElementById('galleryWrapper');
+      const scrollAmount = 300;
+      wrapper.scrollBy({ left: scrollAmount * direction, behavior: 'smooth' });
+    }
+
+   function toggleMenu() {
+    const container = document.getElementById('menuContainer');
+    const btn = document.getElementById('toggleMenuBtn');
+
+    const isCollapsed = container.classList.contains('collapsed');
+    container.classList.toggle('collapsed', !isCollapsed);
+    container.classList.toggle('expanded', isCollapsed);
+    btn.textContent = isCollapsed ? 'Hide Menu' : 'View Full Menu';
+  }
+
   </script>
 </body>
 </html>
