@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XXX店铺主页</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;600&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      margin: 0;
+      font-family: 'Raleway', sans-serif;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-weight: 500;
+      color: #555;
+      margin-right: auto;
+      margin-left: 0;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+      margin-left: auto;
+    }
+
+    .nav-links li {
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #444;
+      font-size: 1rem;
+      font-weight: 300;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: background-color 0.3s, color 0.3s;
+      font-family: 'Raleway', sans-serif;
+    }
+
+    .nav-links a:hover {
+      background-color: #ffa94d;
+      color: #fff;
+    }
+
+    .hero {
+      position: relative;
+      background: url('assets/banner.jpeg') center/cover no-repeat;
+      color: white;
+      text-align: center;
+      height: 75vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 20px;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      background: rgba(255, 255, 255, 0.3);
+      padding: 2rem;
+      border-radius: 0px;
+      max-width: 600px;
+      margin: 2rem auto;
+      color: white;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 300;
+      font-size: 2.5em;
+      margin-bottom: 0.5em;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      opacity: 0;
+      transform: translateX(-60px);
+      animation: slideIn 1s ease-out 0.5s forwards;
+    }
+
+    .hero p {
+      font-family: 'Playfair Display', serif;
+      font-weight: 300;
+      font-size: 1.1em;
+      margin-bottom: 1em;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    }
+
+    .hero-line {
+      width: 60px;
+      height: 3px;
+      background-color: white;
+      margin: 1rem auto 0;
+      opacity: 0;
+      animation: fadeLine 1s ease-out 1.5s forwards;
+    }
+
+    @keyframes slideIn {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeLine {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      background: #f56a00;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      display: inline-block;
+      margin-top: 1.5rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 0 transparent;
+    }
+
+    .btn:hover {
+      box-shadow: 0 0 12px 3px rgba(245, 106, 0, 0.5);
+      transform: scale(1.05);
+    }
+
+    .gallery, .contact {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    .our-story {
+      display: flex;
+      flex-wrap: wrap;
+      min-height: 400px;
+    }
+
+    .our-story-text {
+      flex: 1;
+      background: black;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+      font-size: 1.2rem;
+      font-family: 'Playfair Display', serif;
+      font-weight: 300;
+    }
+
+    .our-story-image {
+      flex: 1;
+      background: url('assets/ourstory.jpg') center/cover no-repeat;
+      min-height: 400px;
+    }
+
+    footer {
+      background: #222;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    /* scroll animation */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .scroll-animate {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.6s ease-out;
+    }
+
+    .scroll-animate.visible {
+      animation: fadeUp 0.6s ease-out forwards;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">LOGO预留</div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#story">Our Story</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+        <li><a href="order.html">Order Now</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1>Welcome To Tornado Crepes</h1>
+      <p>Home of crispy wraps & sweet treats</p>
+      <div class="hero-line"></div>
+      <a href="order.html" class="btn">Order Now</a>
+    </div>
+  </section>
+
+  <section id="gallery" class="gallery scroll-animate">
+    <h2>Gallery</h2>
+    <div class="gallery-grid">
+      <img src="assets/food1.jpg" alt="Crepe 1">
+      <img src="assets/food2.jpg" alt="Crepe 2">
+      <img src="assets/food3.jpg" alt="Crepe 3">
+      <img src="assets/food4.jpg" alt="Crepe 4">
+    </div>
+  </section>
+
+  <section id="story" class="our-story scroll-animate">
+  <div class="our-story-text">
+    <div>
+      <h2 style="font-family: 'Playfair Display', serif;">Our Story</h2>
+      <p>Started as a small family stand, we’ve always believed in warm crepes and even warmer hearts.</p>
+    </div>
+  </div>
+  <div class="our-story-image"></div>
+</section>
+
+
+<section id="contact" class="contact scroll-animate">
+  <h2>Contact Us</h2>
+  <p>Phone: (917) 294-7373<br>Address: 8610 Roosevelt Ave, Jackson Heights, NY</p>
+  <div style="margin-top: 2rem;">
+    <iframe
+      src="https://www.google.com/maps?q=8610+Roosevelt+Ave,+Jackson+Heights,+NY&output=embed"
+      width="100%"
+      height="400"
+      style="border:0; border-radius: 12px;"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+</section>
+
+  <footer>
+    <p>© 2025 Tornado Crepes | Crafted with love ❤️</p>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    });
+
+    document.querySelectorAll('.scroll-animate').forEach(section => {
+      observer.observe(section);
+    });
+  </script>
+</body>
+</html>

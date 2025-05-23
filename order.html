@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Order Now - Tornado Crepes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;600&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Raleway', sans-serif;
+      background-color: #fefefe;
+      line-height: 1.6;
+    }
+    header {
+      background: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-weight: 500;
+      color: #555;
+      margin-right: auto;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-links li {
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #444;
+      font-size: 1rem;
+      font-weight: 300;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: background-color 0.3s, color 0.3s;
+      font-family: 'Raleway', sans-serif;
+    }
+    .nav-links a:hover {
+      background-color: #ffa94d;
+      color: #fff;
+    }
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 80vh;
+      padding: 2rem;
+    }
+    h1 {
+      margin-bottom: 2rem;
+      font-family: 'Playfair Display', serif;
+      font-weight: 300;
+      font-size: 2rem;
+      color: #333;
+    }
+    .platforms {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .platform-icon {
+      width: 240px;
+      height: 240px;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid #ddd;
+      border-radius: 24px;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      backdrop-filter: blur(6px);
+      transform: scale(0.5);
+      opacity: 0;
+      animation: popIn 0.6s ease-out forwards;
+    }
+    .platform-icon:nth-child(1) { animation-delay: 0.1s; }
+    .platform-icon:nth-child(2) { animation-delay: 0.2s; }
+    .platform-icon:nth-child(3) { animation-delay: 0.3s; }
+    .platform-icon:nth-child(4) { animation-delay: 0.4s; }
+
+    .platform-icon:hover {
+      transform: scale(1.1);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+    }
+    .platform-icon img {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 1rem;
+    }
+    .platform-icon span {
+      color: #333;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    @keyframes popIn {
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">LOGO预留</div>
+      <ul class="nav-links">
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="index.html#gallery">Gallery</a></li>
+        <li><a href="index.html#story">Our Story</a></li>
+        <li><a href="index.html#contact">Contact Us</a></li>
+        <li><a href="order.html">Order Now</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <h1>Please choose your platform to order</h1>
+    <div class="platforms">
+      <a class="platform-icon" href="https://www.ubereats.com/" target="_blank">
+        <img src="assets/ubereats-logo.png" alt="Uber Eats">
+        <span>Uber Eats</span>
+      </a>
+      <a class="platform-icon" href="https://www.doordash.com/" target="_blank">
+        <img src="assets/doordash-logo.png" alt="DoorDash">
+        <span>DoorDash</span>
+      </a>
+      <a class="platform-icon" href="https://www.grubhub.com/" target="_blank">
+        <img src="assets/grubhub-logo.png" alt="Grubhub">
+        <span>Grubhub</span>
+      </a>
+      <a class="platform-icon" href="tel:1234567890">
+        <img src="assets/phone-icon.png" alt="Phone">
+        <span>Call Us</span>
+      </a>
+    </div>
+  </main>
+</body>
+</html>
